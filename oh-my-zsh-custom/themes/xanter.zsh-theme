@@ -22,7 +22,7 @@ prompt_status() {
 }
 
 prompt_context() {
-    prompt "%B%(!.%F{red}.%F{green})%n%b%{%F{white}%}@%m"
+    prompt "%B%(!.%F{red}.%F{blue})%n%b%{%F{white}%}@%m"
 }
 
 # Dir: current working directory
