@@ -34,8 +34,9 @@ prompt_dir() {
 prompt_virtualenv() {
   local virtualenv_path="$VIRTUAL_ENV"
   # if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
-  if [[ -n $virtualenv_path ]]; then
-    prompt_segment default cyan "(`basename $virtualenv_path`)"
+  if [[ -n "$virtualenv_path" ]]; then
+    prompt "(`basename $virtualenv_path`)"
+    #prompt_segment default cyan "(`basename $virtualenv_path`)"
     prompt_segment
 fi
 }
@@ -50,8 +51,9 @@ prompt_git() {
     }
     local ref dirty mode repo_path
     local repo_path=$(git rev-parse --git-dir 2>/dev/null)
+    local is_inside_work_tree=$(git rev-parse --is-inside-work-tree 2>&1)
 
-    if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
+    if [[ "$is_inside_work_tree" = "true" ]]; then
         dirty=$(parse_git_dirty)
         ref=$(git symbolic-ref HEAD 2> /dev/null) || ref="➦ $(git rev-parse --short HEAD 2> /dev/null)"
         if [[ -n $dirty ]]; then
@@ -84,7 +86,7 @@ prompt_git() {
     fi
 }
 
-prompt_svn() {
+3prompt_svn() {
     local rev branch
     if in_svn; then
         rev=$(svn_get_rev_nr)
@@ -105,11 +107,11 @@ prompt_end() {
 build_prompt() {
     RETVAL=$?
     prompt_status
-    # prompt_virtualenv
+    prompt_virtualenv
     prompt_context
     prompt_dir
     prompt_git
-    prompt_svn
+#    prompt_svn
     prompt_end
 }
 

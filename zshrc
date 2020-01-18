@@ -53,7 +53,7 @@ ZSH_CUSTOM=$HOME/.oh-my-zsh-custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git jump svn rsync screen tmux systemd fancy-ctrl-z)
+plugins=(git git-flow-avh common-aliases jump rsync systemd fancy-ctrl-z docker docker-compose docker-machine virtualenv virtualenvwrapper zsh-yarn-completions heroku golang)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -88,3 +88,4 @@ source $ZSH/oh-my-zsh.sh
 
 
 alias j=jump
+
